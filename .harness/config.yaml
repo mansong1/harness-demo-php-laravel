@@ -1,5 +1,5 @@
 pipeline:
-    name: config
+    name: php
     identifier: config
     allowStageExecutions: false
     projectIdentifier: PHP2
