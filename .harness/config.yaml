@@ -33,6 +33,7 @@ pipeline:
                         spec:
                             connectorRef: org.Dockerhub
                             image: circleci/mysql:8.0.20-ram
+                            privileged: true
                             envVariables:
                                 MYSQL_USER: forge
                                 MYSQL_DATABASE: forge
