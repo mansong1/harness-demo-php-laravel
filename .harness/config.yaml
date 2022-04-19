@@ -51,7 +51,7 @@ pipeline:
                                       spec:
                                           connectorRef: org.Dockerhub
                                           image: <+Build_and_Test.variables.PHP_IMAGE>
-                                          shell: Bash
+                                          shell: Sh
                                           command: |-
                                               sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
                                               sudo docker-php-ext-install zip bcmath pdo_mysql
@@ -76,6 +76,8 @@ pipeline:
                                     image: <+Build_and_Test.variables.PHP_IMAGE>
                                     shell: Sh
                                     command: |-
+                                        sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
+                                        sudo docker-php-ext-install zip bcmath pdo_mysql
                                         sudo touch storage/testing.sqlite
                                         sudo ls -larth
                                         sudo composer install
