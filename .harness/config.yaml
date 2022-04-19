@@ -39,6 +39,9 @@ pipeline:
                                 MYSQL_DATABASE: forge
                                 MYSQL_PASSWORD: forge
                                 MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+                            args:
+                                - mysqld
+                                - --default-authentication-plugin=mysql_native_password
                       - identifier: Redis
                         name: redis
                         type: Service
