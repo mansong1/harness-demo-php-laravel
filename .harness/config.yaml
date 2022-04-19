@@ -32,15 +32,12 @@ pipeline:
                         type: Service
                         spec:
                             connectorRef: org.Dockerhub
-                            image: circleci/mysql:8.0.20-ram
+                            image: mysql:latest
                             privileged: true
                             envVariables:
                                 MYSQL_USER: forge
                                 MYSQL_DATABASE: forge
                                 MYSQL_PASSWORD: forge
-                            args:
-                                - mysqld
-                                - --default-authentication-plugin=mysql_native_password
                       - identifier: Redis
                         name: redis
                         type: Service
