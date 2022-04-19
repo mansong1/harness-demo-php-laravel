@@ -88,6 +88,9 @@ pipeline:
                                     image: <+Build_and_Test.variables.PHP_IMAGE>
                                     shell: Sh
                                     command: |-
+                                        sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
+                                        sudo docker-php-ext-install zip bcmath pdo_mysql
+
                                         sudo ./vendor/bin/codecept build
                                         sudo ./vendor/bin/codecept run --xml result.xml
                                     privileged: true
@@ -95,7 +98,7 @@ pipeline:
                                         type: JUnit
                                         spec:
                                             paths:
-                                                - result.xml
+                                                - "**/*.xml"
               variables:
                   - name: PHP_IMAGE
                     type: String
