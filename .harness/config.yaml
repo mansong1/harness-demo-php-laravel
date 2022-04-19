@@ -41,6 +41,12 @@ pipeline:
                             args:
                                 - mysqld
                                 - --default-authentication-plugin=mysql_native_password
+                      - identifier: Redis
+                        name: Redis
+                        type: Service
+                        spec:
+                            connectorRef: org.Dockerhub
+                            image: redis:3
                   execution:
                       steps:
                           - step:
