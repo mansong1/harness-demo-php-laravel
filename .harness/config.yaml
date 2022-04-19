@@ -99,6 +99,7 @@ pipeline:
                                                 - result.xml
                   sharedPaths:
                       - /usr/src/php/
+                      - /usr/local/lib/php/
               variables:
                   - name: PHP_IMAGE
                     type: String
