@@ -53,10 +53,8 @@ pipeline:
                                           image: <+Build_and_Test.variables.PHP_IMAGE>
                                           shell: Bash
                                           command: |-
-                                              apt-get update
-                                              apt-get install -y libzip-dev zlib1g-dev
-                                              docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
-                                              docker-php-ext-install zip bcmath pdo_mysql
+                                              sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
+                                              sudo docker-php-ext-install zip bcmath pdo_mysql
                                           privileged: true
                                 - step:
                                       type: Run
@@ -67,8 +65,8 @@ pipeline:
                                           image: <+Build_and_Test.variables.PHP_IMAGE>
                                           shell: Bash
                                           command: |-
-                                              curl -sL https://deb.nodesource.com/setup_10.x | bash -
-                                              apt-get install -y nodejs
+                                              curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+                                              sudo apt-get install -y nodejs
                           - step:
                                 type: Run
                                 name: Prepare DB
