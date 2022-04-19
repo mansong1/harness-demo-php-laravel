@@ -79,7 +79,9 @@ pipeline:
                                         sudo touch storage/testing.sqlite
                                         sudo ls -larth
                                         sudo php artisan migrate --env=testing --database=mysql --force
-                                    privileged: true
+                                    privileged: false
+                                    envVariables:
+                                        LD_LIBRARY_PATH: /usr/src/php/ext/pdo_mysql/modules
                           - step:
                                 type: Run
                                 name: Run Tests
