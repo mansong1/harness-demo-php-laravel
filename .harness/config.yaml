@@ -78,6 +78,7 @@ pipeline:
                                     command: |-
                                         sudo touch storage/testing.sqlite
                                         sudo ls -larth
+                                        sudo composer install
                                         sudo php artisan migrate --env=testing --database=mysql --force
                                     privileged: false
                                     envVariables:
