@@ -38,6 +38,7 @@ pipeline:
                                 MYSQL_USER: forge
                                 MYSQL_DATABASE: forge
                                 MYSQL_PASSWORD: forge
+                                MYSQL_ALLOW_EMPTY_PASSWORD: "true"
                       - identifier: Redis
                         name: redis
                         type: Service
