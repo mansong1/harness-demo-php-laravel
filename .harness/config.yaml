@@ -32,7 +32,7 @@ pipeline:
                         type: Service
                         spec:
                             connectorRef: org.Dockerhub
-                            image: mysql:8.0.20
+                            image: circleci/mysql:8.0.20-ram
                             envVariables:
                                 MYSQL_USER: forge
                                 MYSQL_DATABASE: forge
@@ -43,30 +43,17 @@ pipeline:
                                 - --default-authentication-plugin=mysql_native_password
                   execution:
                       steps:
-                          - parallel:
-                                - step:
-                                      type: Run
-                                      name: Prepare DB
-                                      identifier: Install_MySQL_driver
-                                      spec:
-                                          connectorRef: org.Dockerhub
-                                          image: <+Build_and_Test.variables.PHP_IMAGE>
-                                          shell: Sh
-                                          command: |-
-                                              sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
-                                              sudo docker-php-ext-install zip bcmath pdo_mysql
-                                          privileged: true
-                                - step:
-                                      type: Run
-                                      name: Install Node
-                                      identifier: Install_Node
-                                      spec:
-                                          connectorRef: org.Dockerhub
-                                          image: <+Build_and_Test.variables.PHP_IMAGE>
-                                          shell: Bash
-                                          command: |-
-                                              curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-                                              sudo apt-get install -y nodejs
+                          - step:
+                                type: Run
+                                name: Install Node
+                                identifier: Install_Node
+                                spec:
+                                    connectorRef: org.Dockerhub
+                                    image: <+Build_and_Test.variables.PHP_IMAGE>
+                                    shell: Bash
+                                    command: |-
+                                        curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+                                        sudo apt-get install -y nodejs
                           - step:
                                 type: Run
                                 name: Prepare DB
