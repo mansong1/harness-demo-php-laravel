@@ -79,6 +79,7 @@ pipeline:
                                         touch storage/testing.sqlite
                                         ls -larth
                                         php artisan migrate --env=testing --database=mysql --force
+                                    privileged: true
                           - step:
                                 type: Run
                                 name: Run Tests
