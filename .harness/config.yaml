@@ -98,8 +98,8 @@ pipeline:
                                             paths:
                                                 - result.xml
                   sharedPaths:
-                      - " /usr/src/php/ext"
+                      - " /usr/src/php/"
               variables:
                   - name: PHP_IMAGE
                     type: String
-                    value: php:7.2-stretch
+                    value: circleci/php:7.2-stretch
