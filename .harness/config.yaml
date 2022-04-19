@@ -67,7 +67,7 @@ pipeline:
                                           image: <+Build_and_Test.variables.PHP_IMAGE>
                                           shell: Bash
                                           command: |-
-                                              curl -sL https://deb.nodesource.com/setup_10.x | -E bash -
+                                              curl -sL https://deb.nodesource.com/setup_10.x | bash -
                                               apt-get install -y nodejs
                           - step:
                                 type: Run
