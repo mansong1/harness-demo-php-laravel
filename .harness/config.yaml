@@ -79,6 +79,7 @@ pipeline:
                                     shell: Sh
                                     command: |-
                                         touch storage/testing.sqlite
+                                        ls -larth
                                         php artisan migrate --env=testing --database=mysql --force
                           - step:
                                 type: Run
