@@ -50,7 +50,7 @@ pipeline:
                                       identifier: Install_MySQL_driver
                                       spec:
                                           connectorRef: org.Dockerhub
-                                          image: bash:latest
+                                          image: <+Build_and_Test.variables.PHP_IMAGE>
                                           shell: Bash
                                           command: |-
                                               sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
@@ -62,7 +62,7 @@ pipeline:
                                       identifier: Install_Node
                                       spec:
                                           connectorRef: org.Dockerhub
-                                          image: bash:latest
+                                          image: <+Build_and_Test.variables.PHP_IMAGE>
                                           shell: Bash
                                           command: |-
                                               curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
@@ -73,7 +73,7 @@ pipeline:
                                 identifier: Prepare_DB
                                 spec:
                                     connectorRef: org.Dockerhub
-                                    image: bash:latest
+                                    image: <+Build_and_Test.variables.PHP_IMAGE>
                                     shell: Bash
                                     command: |-
                                         touch storage/testing.sqlite
@@ -85,7 +85,7 @@ pipeline:
                                 identifier: Run_Tests
                                 spec:
                                     connectorRef: org.Dockerhub
-                                    image: php:7.2-stretch
+                                    image: <+Build_and_Test.variables.PHP_IMAGE>
                                     shell: Bash
                                     command: |-
                                         ./vendor/bin/codecept build
@@ -95,3 +95,7 @@ pipeline:
                                         spec:
                                             paths:
                                                 - result.xml
+              variables:
+                  - name: PHP_IMAGE
+                    type: String
+                    value: php:7.2-stretch
