@@ -97,6 +97,8 @@ pipeline:
                                         spec:
                                             paths:
                                                 - result.xml
+                  sharedPaths:
+                      - /usr/src/php/
               variables:
                   - name: PHP_IMAGE
                     type: String
