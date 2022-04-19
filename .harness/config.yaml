@@ -98,6 +98,7 @@ pipeline:
                                                 - result.xml
                   sharedPaths:
                       - " /usr/src/php/"
+                      - ../harness
               variables:
                   - name: PHP_IMAGE
                     type: String
