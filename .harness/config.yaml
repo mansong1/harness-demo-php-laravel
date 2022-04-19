@@ -67,3 +67,31 @@ pipeline:
                                           command: |-
                                               curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
                                               sudo apt-get install -y nodejs
+                          - step:
+                                type: Run
+                                name: Prepare DB
+                                identifier: Prepare_DB
+                                spec:
+                                    connectorRef: org.Dockerhub
+                                    image: bash:latest
+                                    shell: Bash
+                                    command: |-
+                                        touch storage/testing.sqlite
+                                        php artisan migrate --env=testing --database=mysql --force
+                                    privileged: false
+                          - step:
+                                type: Run
+                                name: Run Tests
+                                identifier: Run_Tests
+                                spec:
+                                    connectorRef: org.Dockerhub
+                                    image: php:7.2-stretch
+                                    shell: Bash
+                                    command: |-
+                                        ./vendor/bin/codecept build
+                                        ./vendor/bin/codecept run --xml result.xml
+                                    reports:
+                                        type: JUnit
+                                        spec:
+                                            paths:
+                                                - result.xml
