@@ -76,9 +76,9 @@ pipeline:
                                     image: <+Build_and_Test.variables.PHP_IMAGE>
                                     shell: Sh
                                     command: |-
-                                        touch storage/testing.sqlite
-                                        ls -larth
-                                        php artisan migrate --env=testing --database=mysql --force
+                                        sudo touch storage/testing.sqlite
+                                        sudo ls -larth
+                                        sudo php artisan migrate --env=testing --database=mysql --force
                                     privileged: true
                           - step:
                                 type: Run
