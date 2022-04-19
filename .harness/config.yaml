@@ -53,6 +53,8 @@ pipeline:
                                           image: <+Build_and_Test.variables.PHP_IMAGE>
                                           shell: Bash
                                           command: |-
+                                              apt-get update
+                                              apt-get install -y libzip-dev zlib1g-dev
                                               docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
                                               docker-php-ext-install zip bcmath pdo_mysql
                                           privileged: true
