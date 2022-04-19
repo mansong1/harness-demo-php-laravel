@@ -86,10 +86,11 @@ pipeline:
                                 spec:
                                     connectorRef: org.Dockerhub
                                     image: <+Build_and_Test.variables.PHP_IMAGE>
-                                    shell: Bash
+                                    shell: Sh
                                     command: |-
-                                        ./vendor/bin/codecept build
-                                        ./vendor/bin/codecept run --xml result.xml
+                                        sudo ./vendor/bin/codecept build
+                                        sudo ./vendor/bin/codecept run --xml result.xml
+                                    privileged: true
                                     reports:
                                         type: JUnit
                                         spec:
