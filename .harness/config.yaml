@@ -99,7 +99,6 @@ pipeline:
                                                 - result.xml
                   sharedPaths:
                       - " /usr/src/php/ext"
-                      - /../vendor/
               variables:
                   - name: PHP_IMAGE
                     type: String
