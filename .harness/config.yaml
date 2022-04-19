@@ -88,8 +88,6 @@ pipeline:
                                         spec:
                                             paths:
                                                 - result.xml
-                  sharedPaths:
-                      - /usr/src/php/ext/pdo_mysql/modules
               variables:
                   - name: PHP_IMAGE
                     type: String
